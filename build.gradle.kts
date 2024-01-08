@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jacoco:org.jacoco.core:0.8.7")
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.8.20}")
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:1.8.20")
     }
 }
 
