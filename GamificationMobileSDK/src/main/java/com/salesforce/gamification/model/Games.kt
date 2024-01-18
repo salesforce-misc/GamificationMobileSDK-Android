@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 package com.salesforce.gamification.model
 
 import com.google.gson.annotations.SerializedName
@@ -26,10 +33,10 @@ data class GameDefinition(
     val endDate: String?,
 
     @SerializedName("gameRewards")
-    val gameRewards: List<GameReward> = mutableListOf(),
+    val gameRewards: List<GameReward>,
 
     @SerializedName("participantGameRewards")
-    val participantGameRewards: List<ParticipantGameReward> = mutableListOf(),
+    val participantGameRewards: List<ParticipantGameReward>,
 
     @SerializedName("name")
     val name: String?,

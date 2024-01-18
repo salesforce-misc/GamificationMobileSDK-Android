@@ -11,8 +11,8 @@ android {
         minSdk = 24
         targetSdk = 33
 
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        var consumerProguardFiles = "consumer-rules.pro"
     }
 
     buildTypes {
@@ -22,6 +22,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("boolean", "LOG_ENABLED", "false")
+            enableUnitTestCoverage = true
+        }
+        debug {
+            buildConfigField("boolean", "LOG_ENABLED", "true")
+            isMinifyEnabled = false
+            enableUnitTestCoverage = true
         }
     }
     compileOptions {

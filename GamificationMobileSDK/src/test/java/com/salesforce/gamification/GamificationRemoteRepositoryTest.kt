@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 package com.salesforce.gamification
 
 import com.google.gson.Gson
@@ -56,7 +63,7 @@ class GamificationRemoteRepositoryTest {
             )
             TestCase.assertEquals(result.isSuccess, true)
             result.onSuccess {
-                TestCase.assertEquals(it.gameDefinitions.size , 6)
+                TestCase.assertEquals(it.gameDefinitions.size, 6)
             }
         }
     }
@@ -79,7 +86,7 @@ class GamificationRemoteRepositoryTest {
             )
             TestCase.assertEquals(result.isSuccess, true)
             result.onSuccess {
-                TestCase.assertEquals(it.gameDefinitions.size , 6)
+                TestCase.assertEquals(it.gameDefinitions.size, 6)
             }
         }
     }
@@ -122,7 +129,7 @@ class GamificationRemoteRepositoryTest {
             TestCase.assertEquals(result.isSuccess, true)
             result.onSuccess {
                 TestCase.assertNotNull(it.gameRewards)
-                TestCase.assertEquals(it.gameRewards.size , 1)
+                TestCase.assertEquals(it.gameRewards.size, 1)
             }
         }
     }
@@ -146,7 +153,7 @@ class GamificationRemoteRepositoryTest {
             TestCase.assertEquals(result.isSuccess, true)
             result.onSuccess {
                 TestCase.assertNotNull(it.gameRewards)
-                TestCase.assertEquals(it.gameRewards.size , 1)
+                TestCase.assertEquals(it.gameRewards.size, 1)
             }
         }
     }
