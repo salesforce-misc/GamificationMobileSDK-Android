@@ -4,11 +4,11 @@
 Experience Gamification on your Android mobile devices and use the mobile software development kit’s (SDK) capabilities and build custom mobile applications with unique user experiences. Build the SDK for your loyalty program members to view their assigned games, play games.
 
 **Where:** This feature is available in Lightning Experience in all editions.  
-**How:** Install the Loyalty Management Mobile SDK for Android, create a connected app, and then clone the GitHub repository.
+**How:** Install the Gamification Mobile SDK for Android, create a connected app, and then clone the GitHub repository.
 
-## Android Mobile SDK for Loyalty Management
+## Android Mobile SDK for Gamification
 
-Enhance brand engagement by providing Loyalty Management features on your Android mobile devices. Use the Android Mobile Software Development Kit (SDK) for Loyalty Management to build custom mobile applications with immersive member experiences. Elevate member experience and loyalty, by providing personalized offers, rewards, and checkouts on mobile devices.
+Enhance brand engagement by providing Gamification features on your Android mobile devices. Use the Android Mobile Software Development Kit (SDK) for Gamification to build custom mobile applications with immersive member experiences. Elevate member experience and loyalty, by providing personalized offers, rewards, and checkouts on mobile devices.
 
 ### Supported Versions of Tools and Components
 
@@ -22,7 +22,7 @@ Enhance brand engagement by providing Loyalty Management features on your Androi
 
 ### Installation
 
-To integrate Loyalty Management Mobile SDK for Android with your Android project, add it as a package dependency.
+To integrate Gamification Mobile SDK for Android with your Android project, add it as a package dependency.
 
 In the Terminal, execute the following commands within your project:
 `git submodule add git@github.com:loyaltysampleapp/GamificationMobileSDK-Android.git
@@ -48,20 +48,27 @@ The `GamificationRemoteRepository` class manages requests related to gamificatio
 - Manage authentication by creating an instance of GameAuthenticator that was injected at the time of initialization.
 - Interact with the Gamification APIs, including:
   - Get Games
-  - Play Game
+  - Get Game Reward
 
 - Support both live API calls and local JSON file fetch for development mode.
 - Manage asynchronous requests by using Retrofit and Kotlin coroutines.
 
 ### Usage
 
-1. In order to use the SDK, you need to provide a valid `accessToken` to interact with Salesforce API. To do this, you are required to conform and implement [`GameAuthenticator`]
-2. Create an instance of `GamificationRemoteRepository` with the necessary parameters:
+1. In order to use the SDK, you need to provide a valid `accessToken` to interact with Salesforce API. To do this, you are required to conform and implement [`GameAuthenticator`](./GamificationMobileSDK/src/main/java/com/salesforce/gamification/api/GameAuthenticator.kt)
+2. Create an instance of 'GameAPIClient' with the necessary parameters:
 
+```Kotlin
+   val gameAuthenticator = GameAuthenticatorImpl()
+   val gameClient = GameAPIClient(auth = gameAuthenticator, instanceUrl = "YourInstanceURL")
 ```
-val repository = GamificationRemoteRepository(gameAuthenticator, instanceUrl, gameClient)```
+3. Create an instance of `GamificationRemoteRepository` with the necessary parameters:
 
-2. Call the appropriate methods to interact with the Gamification API:
+```Kotlin
+val repository = GamificationRemoteRepository(gameAuthenticator, instanceUrl, gameClient)
+```
+
+4. Call the appropriate methods to interact with the Gamification API:
 
 ```Kotlin
 import com.salesforce.gamification.api.*
@@ -69,12 +76,11 @@ import com.salesforce.gamification.model.*
 import com.salesforce.gamification.repository.*
 import com.salesforce.gamification.utilities.*
 
-val gameAuthenticator = GameAuthenticatorImpl()
-val mInstanceUrl = URL("https://your_salesforce_instance_url")
+
 val repository = GamificationRemoteRepository(
             auth = gameAuthenticator,
             instanceUrl = mInstanceUrl,
-            gameClient = GameAPIClient(forceAuthManager, instanceUrl)
+            gameClient = gameClient
         )         
         
 // Retrieve games for the specified participant Id
@@ -84,19 +90,19 @@ repository.getGames(
                 mockResponse = false // true, if we want to check API with local json
             )
 
-// Retrieve the game reward for the game played by a member
+// Retrieve the details of the reward that’s provided to a participant after they play a game.
 repository.getGameReward(
                 gameParticipantRewardId = gameParticipantRewardId, 
                 mockResponse = false // true, if we want to check API with local json
             )
 ```
 
-For a detailed understanding of each method and its parameters, please refer to the comments in the provided `LoyaltyAPIManager` code.
+For a detailed understanding of each method and its parameters, please refer to the comments in the provided `GamificationRemoteRepository` code.
 
 ## Contribute to the SDK
 
-You can contribute to the development of the Loyalty Management Mobile SDK.
-1. Fork the Loyalty Management Mobile SDK for Android [repository](https://github.com/loyaltysampleapp/GamificationMobileSDK-Android)
+You can contribute to the development of the Gamification Mobile SDK.
+1. Fork the Gamification Mobile SDK for Android [repository](https://github.com/loyaltysampleapp/GamificationMobileSDK-Android)
 2. Create a branch with a descriptive name.
 3. Implement your changes.
 4. Test your changes.
@@ -107,7 +113,7 @@ See also:
 
 ## License
 
-LoyaltyMobileSDK-Android is available under the BSD 3-Clause License.
+GamificationMobileSDK-Android is available under the BSD 3-Clause License.
 
 Copyright (c) 2023, Salesforce Industries
 All rights reserved.
