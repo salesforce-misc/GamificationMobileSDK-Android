@@ -9,6 +9,9 @@ package com.salesforce.gamification.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * ParticipantGameReward is a data class that holds parameters of reward corresponding to gameParticipantRewardId.
+ */
 data class ParticipantGameReward(
     @SerializedName("gameRewardId")
     val gameRewardId: String?,

@@ -7,6 +7,9 @@
 
 package com.salesforce.gamification.api
 
+/**
+ * GameAPIConfig class is a utility class for holding constant values.
+ */
 object GameAPIConfig {
 
     const val HEADER_AUTHORIZATION = "Authorization"

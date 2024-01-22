@@ -9,6 +9,9 @@ package com.salesforce.gamification.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Games is a data class that holds the response parameters of Get Games API.
+ */
 data class Games(
 
     @SerializedName("errorMessage")

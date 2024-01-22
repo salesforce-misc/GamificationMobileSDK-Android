@@ -16,6 +16,9 @@ import com.salesforce.gamification.model.Games
 import com.salesforce.gamification.utilities.GamificationLogger
 import java.io.InputStreamReader
 
+/**
+ * GamificationRemoteRepository class manages the requests related to Gamification and it inturn invokes the rest APIs
+ */
 class GamificationRemoteRepository constructor(
     auth: GameAuthenticator,
     instanceUrl: String,
@@ -23,7 +26,7 @@ class GamificationRemoteRepository constructor(
 ) {
 
     companion object {
-        private const val TAG = "GamificationAPIManager"
+        private const val TAG = "GamificationRemoteRepository"
     }
 
     private val authenticator: GameAuthenticator
@@ -38,6 +41,13 @@ class GamificationRemoteRepository constructor(
         mGameClient = gameClient
     }
 
+    /**
+     * Get the details of the reward that’s provided to a participant after they play a game.
+     *
+     * @param gameParticipantRewardId The ID of the participant's game reward
+     * @param mockResponse true, if check API with local json, false otherwise
+     * @return [GameRewardResponse] wrapped in Kotlin [Result] class if successful.
+     */
     suspend fun getGameReward(
         gameParticipantRewardId: String,
         mockResponse: Boolean
@@ -62,6 +72,14 @@ class GamificationRemoteRepository constructor(
         }
     }
 
+    /**
+     * Get a list of games that a member is eligible to play.
+     *
+     * @param participantId The ID of the participant for which list of games is queried
+     * @param gameParticipantRewardId The ID of the participant's game reward for which details are required.
+     * @param mockResponse true, if check API with local json, false otherwise
+     * @return [Games] wrapped in Kotlin [Result] class if successful.
+     */
     suspend fun getGames(
         participantId: String,
         gameParticipantRewardId: String? = null,

@@ -9,6 +9,9 @@ package com.salesforce.gamification.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * GameRewardResponse is a data class that holds response parameters of Play Game API.
+ */
 data class GameRewardResponse(
     @SerializedName("errorMessage")
     val errorMessage: String?,

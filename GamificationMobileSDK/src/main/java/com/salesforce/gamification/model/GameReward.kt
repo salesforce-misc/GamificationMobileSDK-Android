@@ -9,6 +9,9 @@ package com.salesforce.gamification.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * GameReward data class holds the parameters of game rewards of a [GameDefinition]
+ */
 data class GameReward(
     @SerializedName("color")
     val segColor: String?,
