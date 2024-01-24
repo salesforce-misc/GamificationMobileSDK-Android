@@ -1,9 +1,17 @@
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 package com.salesforce.gamification.model
 
-import android.os.Parcel
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
+/**
+ * GameReward data class holds the parameters of game rewards of a [GameDefinition]
+ */
 data class GameReward(
     @SerializedName("color")
     val segColor: String?,
@@ -31,43 +39,4 @@ data class GameReward(
 
     @SerializedName("gameRewardId")
     val gameRewardId: String?,
-): Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(segColor)
-        parcel.writeString(description)
-        parcel.writeString(expirationDate)
-        parcel.writeString(imageUrl)
-        parcel.writeString(name)
-        parcel.writeString(rewardDefinitionId)
-        parcel.writeString(rewardType)
-        parcel.writeString(rewardValue)
-        parcel.writeString(gameRewardId)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<GameReward> {
-        override fun createFromParcel(parcel: Parcel): GameReward {
-            return GameReward(parcel)
-        }
-
-        override fun newArray(size: Int): Array<GameReward?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+)

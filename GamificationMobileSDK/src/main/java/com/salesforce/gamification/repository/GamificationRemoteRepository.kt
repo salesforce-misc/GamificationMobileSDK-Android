@@ -1,18 +1,32 @@
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
 package com.salesforce.gamification.repository
 
-import android.util.Log
 import com.google.gson.Gson
 import com.salesforce.gamification.api.GameAPIConfig
 import com.salesforce.gamification.api.GameAuthenticator
 import com.salesforce.gamification.api.NetworkClient
 import com.salesforce.gamification.model.GameRewardResponse
 import com.salesforce.gamification.model.Games
+import com.salesforce.gamification.utilities.GamificationLogger
 import java.io.InputStreamReader
 
-class GamificationRemoteRepository constructor(auth: GameAuthenticator, instanceUrl: String, gameClient: NetworkClient){
+/**
+ * GamificationRemoteRepository class manages the requests related to Gamification and it inturn invokes the rest APIs
+ */
+class GamificationRemoteRepository constructor(
+    auth: GameAuthenticator,
+    instanceUrl: String,
+    gameClient: NetworkClient
+) {
 
     companion object {
-        private const val TAG = "GamificationAPIManager"
+        private const val TAG = "GamificationRemoteRepository"
     }
 
     private val authenticator: GameAuthenticator
@@ -27,8 +41,18 @@ class GamificationRemoteRepository constructor(auth: GameAuthenticator, instance
         mGameClient = gameClient
     }
 
-    suspend fun getGameReward(gameParticipantRewardId: String, mockResponse: Boolean): Result<GameRewardResponse> {
-        Log.d(TAG, "getGameReward()")
+    /**
+     * Get the details of the reward that’s provided to a participant after they play a game.
+     *
+     * @param gameParticipantRewardId The ID of the participant's game reward
+     * @param mockResponse true, if check API with local json, false otherwise
+     * @return [GameRewardResponse] wrapped in Kotlin [Result] class if successful.
+     */
+    suspend fun getGameReward(
+        gameParticipantRewardId: String,
+        mockResponse: Boolean
+    ): Result<GameRewardResponse> {
+        GamificationLogger.d(TAG, "getGameReward() mockResponse : $mockResponse")
 
         if (mockResponse) {
             val reader =
@@ -48,8 +72,23 @@ class GamificationRemoteRepository constructor(auth: GameAuthenticator, instance
         }
     }
 
-    suspend fun getGames(participantId: String, gameParticipantRewardId: String? = null, mockResponse: Boolean): Result<Games> {
-        Log.d(TAG, "getGames() participantId: $participantId gameParticipantRewardId: $gameParticipantRewardId")
+    /**
+     * Get a list of games that a member is eligible to play.
+     *
+     * @param participantId The ID of the participant for which list of games is queried
+     * @param gameParticipantRewardId The ID of the participant's game reward for which details are required.
+     * @param mockResponse true, if check API with local json, false otherwise
+     * @return [Games] wrapped in Kotlin [Result] class if successful.
+     */
+    suspend fun getGames(
+        participantId: String,
+        gameParticipantRewardId: String? = null,
+        mockResponse: Boolean
+    ): Result<Games> {
+        GamificationLogger.d(
+            TAG,
+            "getGames() participantId: $participantId gameParticipantRewardId: $gameParticipantRewardId mockResponse: $mockResponse"
+        )
 
         if (mockResponse) {
             val reader =

@@ -7,6 +7,7 @@
 
 package com.salesforce.gamification.api
 
+import com.salesforce.gamification.utilities.GamificationLogger
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -53,6 +54,7 @@ class GameResponseCall<T>(val delegate: Call<T>) :
                         is HttpException -> GameAPIError.REQUEST_FAILED.customDescription
                         else -> t.localizedMessage
                     }
+                    GamificationLogger.e("GameResponseCall", errorMessage, t)
                     callback.onResponse(
                         this@GameResponseCall,
                         Response.success(Result.failure(RuntimeException(errorMessage, t)))
