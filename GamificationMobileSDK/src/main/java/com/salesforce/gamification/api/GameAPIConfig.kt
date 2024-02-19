@@ -8,6 +8,10 @@ object GameAPIConfig {
 
     const val API_VERSION_60 = "v60.0"
 
+    const val HEADER_SFORCE_OPTION_KEY = "Sforce-Call-Options"
+    const val HEADER_SFORCE_OPTION_Value = "client=gamificationMobileSdk-Android"
+
+
     /**
      * Sealed class that is used to define the Resources and its corresponding parameters.
      */
