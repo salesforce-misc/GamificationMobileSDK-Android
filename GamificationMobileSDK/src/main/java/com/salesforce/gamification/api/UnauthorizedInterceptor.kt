@@ -7,6 +7,8 @@
 
 package com.salesforce.gamification.api
 
+import com.salesforce.gamification.api.GameAPIConfig.HEADER_SFORCE_OPTION_KEY
+import com.salesforce.gamification.api.GameAPIConfig.HEADER_SFORCE_OPTION_Value
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -57,6 +59,7 @@ class UnauthorizedInterceptor(auth: GameAuthenticator) : Interceptor {
         val bearerTokenValue = BEARER_HEADER + accessToken
         return request.newBuilder()
             .addHeader(GameAPIConfig.HEADER_AUTHORIZATION, bearerTokenValue)
+            .addHeader(HEADER_SFORCE_OPTION_KEY, HEADER_SFORCE_OPTION_Value)
             .build()
     }
 }
